@@ -1,0 +1,17 @@
+.myNote {
+  &-enter {
+    @apply opacity-0 -translate-x-3;
+  }
+
+  &-enter-active {
+    @apply opacity-100 translate-x-0 duration-500 transition-all ease-out;
+  }
+
+  &-exit {
+    @apply opacity-100;
+  }
+
+  &-exit-active {
+    @apply opacity-0 transition-all duration-500 translate-x-3 ease-out;
+  }
+}
