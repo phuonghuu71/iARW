@@ -1,0 +1,27 @@
+/* modal */
+.modal {
+  @apply flex items-center my-6 justify-center opacity-0 invisible fixed z-10 left-0 top-0 w-full h-full overflow-auto bg-black/[.06] transition-all ease-in-out duration-300;
+
+  &-active {
+    @apply visible opacity-100;
+  }
+
+  &-content {
+    @apply invisible w-4/12 transition-all -translate-y-10 bg-white rounded-md opacity-0 min-h-min;
+  }
+
+  &-active &-content {
+    @apply visible translate-y-0 opacity-100;
+  }
+
+  &-header,
+  &-body,
+  &-footer {
+    @apply px-4 py-2;
+  }
+
+  &-close {
+    @apply absolute text-lg text-green-500 cursor-pointer top-4 right-6 hover:text-black;
+  }
+}
+/* end of field */

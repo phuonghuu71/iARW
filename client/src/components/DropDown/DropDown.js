@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaChevronDown } from "react-icons/fa";
+import "./styles.scss";
 
 function Dropdown({
   select = "",
@@ -68,12 +69,14 @@ function Dropdown({
         <ul className={`dd-list ${position === "top" ? "top" : "bottom"}`}>
           {items.map((item) => (
             <li
-              className={`${
-                isItemInSelection(item) ? "active" : ""
-              } dd-list-item`}
+              className={`${isItemInSelection(item) ? "active" : ""}`}
               key={item.id}
             >
-              <button type="button" onClick={() => handleOnClick(item)}>
+              <button
+                className="flex justify-between bg-white py-2 px-5 border-none border-b-[1px] border-green-400 text-center w-full border-x-[1px]"
+                type="button"
+                onClick={() => handleOnClick(item)}
+              >
                 <span>{item.value}</span>
               </button>
             </li>

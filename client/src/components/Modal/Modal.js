@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import "./styles.scss";
 
 function Modal(props) {
   const modalRef = useRef();

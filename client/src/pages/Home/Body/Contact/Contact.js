@@ -1,5 +1,4 @@
 import React from "react";
-import "./Contact.css";
 
 import { AiFillPhone, AiOutlineMail } from "react-icons/ai";
 import { FiMapPin } from "react-icons/fi";

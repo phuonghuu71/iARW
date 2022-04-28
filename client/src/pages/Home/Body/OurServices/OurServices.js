@@ -13,7 +13,7 @@ SwiperCore.use([Autoplay]);
 
 function OurServices() {
   return (
-    <div className="bg-gray-100 ourservices-container">
+    <div className="bg-gray-100 relative w-full h-[calc(100vh-4rem)] mt-16 px-6">
       <div className="top-blur"></div>
       <div className="bottom-blur"></div>
 

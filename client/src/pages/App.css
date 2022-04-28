@@ -95,6 +95,82 @@
     @apply px-5 text-white py-2.5 bg-orange-500 shadow-lg hover:bg-orange-600 rounded-xl;
   }
 
+  /* contact container */
+  .contact-container {
+    @apply relative w-full h-[calc(100vh-4rem)] mt-16 px-6;
+  }
+
+  .contact-inner-container {
+    @apply w-9/12 mx-auto bg-green-500 rounded-xl h-[75%];
+  }
+  /* end of field */
+
+  /* contact introduce */
+  .contact-introduce-container {
+    @apply h-[htmlFor(100%-6rem)] w-6/12 rounded-xl translate-x-12 p-8;
+  }
+
+  .contact-introduce-title {
+    @apply mb-6 text-3xl font-bold text-white;
+  }
+
+  .contact-introduce-text {
+    @apply text-base font-semibold leading-snug text-justify text-gray-100;
+  }
+  /* end of field */
+
+  /* contact introduce info */
+  .contact-introduce-info-container {
+    @apply inline-flex flex-col px-6;
+  }
+
+  .contact-introduce-info-title-container {
+    @apply relative flex items-center py-4;
+  }
+
+  .contact-introduce-info-title {
+    @apply relative pl-4 text-lg font-bold text-white before:absolute before:left-0 before:h-full before:w-[4px] before:bg-white;
+  }
+
+  .contact-introduce-info-items-container {
+    @apply flex items-center py-2 pl-6 pr-10 mb-3 text-lg text-white transition-all duration-500 border-2 border-solid rounded-md cursor-pointer hover:bg-white hover:text-green-500 hover:border-white;
+  }
+  /* end of field */
+
+  /* contact register */
+  .contact-register-container {
+    @apply ml-auto h-[htmlFor(100%-6rem)] w-4/12 bg-white rounded-xl -translate-x-20 px-8 py-4;
+  }
+
+  .contact-register-title {
+    @apply text-lg font-bold text-center text-green-500;
+  }
+
+  .contact-register-info-container {
+    @apply relative z-0 w-full mb-6;
+  }
+
+  .contact-register-info-input {
+    @apply block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600;
+  }
+
+  .contact-register-info-label {
+    @apply absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0]  peer-focus:left-0 peer-focus:text-green-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6;
+  }
+
+  .contact-register-message-input {
+    @apply block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500;
+  }
+
+  .contact-register-message-label {
+    @apply block mb-2 text-sm text-gray-400;
+  }
+
+  .contact-register-info-btn-submit {
+    @apply ml-auto text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center;
+  }
+  /* end of field */
+
   /* apply the line effect under the word */
   .line-effect {
     @apply after:transition-all after:duration-300 after:absolute after:h-1 after:bg-green-500 after:w-0 after:hover:w-full after:-bottom-3 after:left-0;
@@ -226,11 +302,6 @@
   }
   /* end of field */
 
-  /* apply Our Services effect */
-  .ourservices-container {
-    @apply relative w-full h-[calc(100vh-4rem)] mt-16 px-6;
-  }
-
   .card-container-service {
     @apply relative h-full transition-all duration-500 bg-white before:duration-500 before:transition-all before:h-2 before:w-0 before:hover:w-full before:block before:m-auto before:bg-white w-96 rounded-b-2xl hover:bg-green-500;
   }
@@ -272,70 +343,40 @@
   }
   /* end of field */
 
-  /* create product modal */
-  .modal {
-    @apply flex items-center my-6 justify-center opacity-0 invisible fixed z-10 left-0 top-0 w-full h-full overflow-auto bg-black/[.06] transition-all ease-in-out duration-300;
-
-    &-active {
-      @apply visible opacity-100;
-    }
-
-    &-content {
-      @apply w-4/12 min-h-min bg-white rounded-md transition-all opacity-0 invisible -translate-y-10;
-    }
-
-    &-active &-content {
-      @apply visible translate-y-0 opacity-100;
-    }
-
-    &-header,
-    &-body,
-    &-footer {
-      @apply px-4 py-2;
-    }
-
-    &-close {
-      @apply absolute text-lg text-green-500 cursor-pointer top-4 right-6 hover:text-black;
-    }
-  }
-  /* end of field */
-
   /* button styling */
   .button {
-    @apply px-3 py-2 rounded-md shadow-md fast-animation ease-in-out;
-    &-success {
-      @apply bg-green-500 hover:bg-green-600 text-white;
-    }
+    @apply px-3 py-2 ease-in-out rounded-md shadow-md fast-animation;
+  }
+  .button-success {
+    @apply text-white bg-green-500 hover:bg-green-600;
+  }
 
-    &-danger {
-      @apply bg-red-500 hover:bg-red-600 text-white;
-    }
+  .button-danger {
+    @apply text-white bg-red-500 hover:bg-red-600;
+  }
 
-    &-warning {
-      @apply bg-orange-500 hover:bg-red-600 text-white;
-    }
+  .button-warning {
+    @apply text-white bg-orange-500 hover:bg-red-600;
   }
   /* end of field */
 }
 
 @layer utilities {
   /* create process edit note toggle */
-  .edit-mode {
-    &-off {
-      @apply transition-all duration-500 opacity-0 -translate-y-6 invisible;
-    }
-    &-on {
-      @apply transition-all duration-500 opacity-100 translate-y-0 visible;
-    }
+  .edit-mode-off {
+    @apply invisible transition-all duration-500 -translate-y-6 opacity-0;
+  }
+  .edit-mode-on {
+    @apply visible transition-all duration-500 translate-y-0 opacity-100;
   }
   /* end of field */
 
   .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
-    &::-webkit-scrollbar {
-      display: none;
-    }
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 
   .top-blur {
@@ -386,63 +427,6 @@
   /* apply animation effect */
   .fast-animation {
     @apply transition-all duration-150;
-  }
-  /* end of field */
-
-  /* apply dropdown effect */
-  @mixin styling() {
-    @apply bg-white rounded-md shadow-md border-gray-500;
-  }
-
-  .dd-wrapper {
-    @apply flex-col min-h-min min-w-full flex-wrap relative py-2;
-
-    .dd-header {
-      @include styling();
-      @apply flex justify-between items-center cursor-pointer w-full h-10 py-0 px-5 border-[1px] border-gray-200;
-
-      &__title--bold {
-        @apply font-bold;
-      }
-    }
-
-    .dd-list {
-      @apply shadow-md p-0 m-0 w-full absolute left-0 z-20;
-
-      &.top {
-        @apply top-14;
-      }
-
-      &.bottom {
-        @apply bottom-14;
-      }
-
-      li {
-        list-style-type: none;
-
-        &:first-of-type {
-          > button {
-            @apply border-t-[1px] border-gray-300 rounded-t-[4px];
-          }
-        }
-
-        &:last-of-type > button {
-          @apply rounded-b-[4px];
-        }
-
-        button {
-          @apply flex justify-between bg-white py-2 px-5 border-none border-b-[1px] border-green-400 text-center w-full border-x-[1px];
-          &:hover,
-          &:focus {
-            @apply cursor-pointer bg-green-400 text-white;
-          }
-        }
-
-        &.active button {
-          @apply bg-green-500 text-white;
-        }
-      }
-    }
   }
   /* end of field */
 }

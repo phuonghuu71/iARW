@@ -1,0 +1,45 @@
+/* apply dropdown effect */
+@mixin styling() {
+  @apply bg-white border-gray-500 rounded-md shadow-md;
+}
+
+.dd-wrapper {
+  @apply relative flex-col flex-wrap min-w-full py-2 min-h-min;
+
+  .dd-header {
+    @include styling();
+    @apply flex justify-between items-center cursor-pointer w-full h-10 py-0 px-5 border-[1px] border-gray-200;
+
+    &__title--bold {
+      @apply font-bold;
+    }
+  }
+
+  .dd-list {
+    @apply absolute left-0 z-20 w-full p-0 m-0 shadow-md;
+
+    &.top {
+      @apply top-14;
+    }
+
+    &.bottom {
+      @apply bottom-14;
+    }
+
+    li {
+      @apply list-none;
+
+      button {
+        &:hover,
+        &:focus {
+          @apply text-white bg-green-400 cursor-pointer;
+        }
+      }
+
+      &.active button {
+        @apply text-white bg-green-500;
+      }
+    }
+  }
+}
+/* end of field */
