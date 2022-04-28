@@ -19,10 +19,10 @@ function MainContent({ toggleSidebar }) {
 
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/product-manager" element={<ProductManagement />} />
-        <Route path="/process-manager" element={<ProcessManagement />} />
-        <Route path="/product-approval" element={<ProductApproval />} />
-        <Route path="/account-manager" element={<AccountManagement />} />
+        <Route path="/productmanager" element={<ProductManagement />} />
+        <Route path="/processmanager" element={<ProcessManagement />} />
+        <Route path="/productapproval" element={<ProductApproval />} />
+        <Route path="/accountmanager" element={<AccountManagement />} />
         <Route path="/details" element={<ProductDetails />} />
       </Routes>
 

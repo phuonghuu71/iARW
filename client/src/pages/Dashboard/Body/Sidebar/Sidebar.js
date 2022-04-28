@@ -41,7 +41,7 @@ function Sidebar({ toggleSidebar, setToggleSidebar }) {
 
       <br />
 
-      <div className="w-full py-2 transition-all duration-200 rounded-lg cursor-pointer hover:bg-gray-100 mb-2">
+      <div className="w-full py-2 mb-2 transition-all duration-200 rounded-lg cursor-pointer hover:bg-gray-100">
         <div
           className="flex items-center justify-between"
           onClick={() => {
@@ -52,7 +52,7 @@ function Sidebar({ toggleSidebar, setToggleSidebar }) {
         >
           <div className="flex items-center justify-start order-1">
             <a href="/dashboard/">
-              <h2 className="text-sm font-bold text-green-500 ml-3">
+              <h2 className="ml-3 text-sm font-bold text-green-500">
                 TRANG CHỦ
               </h2>
             </a>
@@ -64,7 +64,7 @@ function Sidebar({ toggleSidebar, setToggleSidebar }) {
         </div>
       </div>
 
-      <div className="w-full py-2 transition-all duration-200 rounded-lg cursor-pointer hover:bg-gray-100 mb-2">
+      <div className="w-full py-2 mb-2 transition-all duration-200 rounded-lg cursor-pointer hover:bg-gray-100">
         <div>
           <div
             className="flex items-center justify-between"
@@ -97,13 +97,13 @@ function Sidebar({ toggleSidebar, setToggleSidebar }) {
             } overflow-hidden fast-animation ease-in-out mx-4`}
           >
             <li className="p-2 mt-2 ml-4 text-sm font-semibold text-green-500 rounded-lg hover:bg-gray-300">
-              <a href="/dashboard/product-manager">Danh sách nông sản</a>
+              <a href="/dashboard/productmanager">Danh sách nông sản</a>
             </li>
           </ul>
         </div>
       </div>
 
-      <div className="w-full py-2 transition-all duration-200 rounded-lg cursor-pointer hover:bg-gray-100 mb-2">
+      <div className="w-full py-2 mb-2 transition-all duration-200 rounded-lg cursor-pointer hover:bg-gray-100">
         <div>
           <div
             className="flex items-center justify-between"
@@ -136,13 +136,13 @@ function Sidebar({ toggleSidebar, setToggleSidebar }) {
             } overflow-hidden fast-animation ease-in-out mx-4`}
           >
             <li className="p-2 mt-2 ml-4 text-sm font-semibold text-green-500 rounded-lg hover:bg-gray-300">
-              <a href="/dashboard/product-approval">Danh sách bài</a>
+              <a href="/dashboard/productapproval">Danh sách bài</a>
             </li>
           </ul>
         </div>
       </div>
 
-      <div className="w-full py-2 transition-all duration-200 rounded-lg cursor-pointer hover:bg-gray-100 mb-2">
+      <div className="w-full py-2 mb-2 transition-all duration-200 rounded-lg cursor-pointer hover:bg-gray-100">
         <div>
           <div
             className="flex items-center justify-between"
@@ -175,7 +175,7 @@ function Sidebar({ toggleSidebar, setToggleSidebar }) {
             } overflow-hidden fast-animation ease-in-out mx-4`}
           >
             <li className="p-2 mt-2 ml-4 text-sm font-semibold text-green-500 rounded-lg hover:bg-gray-300">
-              <a href="/dashboard/account-manager">Danh sách tài khoản</a>
+              <a href="/dashboard/accountmanager">Danh sách tài khoản</a>
             </li>
           </ul>
         </div>

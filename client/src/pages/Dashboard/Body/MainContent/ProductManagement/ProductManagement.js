@@ -22,7 +22,7 @@ function ProductManagement() {
 
   const navigate = useNavigate();
   const handleOnClick = useCallback(
-    () => navigate("/dashboard/process-manager", { replace: true }),
+    () => navigate("/dashboard/processmanager", { replace: true }),
     [navigate]
   );
 
