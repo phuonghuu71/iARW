@@ -5,6 +5,7 @@ import { AiOutlineScan } from "react-icons/ai";
 import { BsChevronRight, BsChevronDown } from "react-icons/bs";
 import { MdSupervisorAccount } from "react-icons/md";
 import { AiFillHome } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 function Sidebar({ toggleSidebar, setToggleSidebar }) {
   const [activeItem, setActiveItem] = useState(false);
@@ -51,11 +52,11 @@ function Sidebar({ toggleSidebar, setToggleSidebar }) {
           }}
         >
           <div className="flex items-center justify-start order-1">
-            <a href="/dashboard/">
+            <Link to="/dashboard/" replace>
               <h2 className="ml-3 text-sm font-bold text-green-500">
                 TRANG CHỦ
               </h2>
-            </a>
+            </Link>
           </div>
 
           <div className="z-10 flex items-center order-3 float-left mr-2 min-h-fit min-w-fit">
@@ -97,7 +98,9 @@ function Sidebar({ toggleSidebar, setToggleSidebar }) {
             } overflow-hidden fast-animation ease-in-out mx-4`}
           >
             <li className="p-2 mt-2 ml-4 text-sm font-semibold text-green-500 rounded-lg hover:bg-gray-300">
-              <a href="/dashboard/productmanager">Danh sách nông sản</a>
+              <Link to="/dashboard/product-manager" replace>
+                Danh sách nông sản
+              </Link>
             </li>
           </ul>
         </div>
@@ -136,7 +139,9 @@ function Sidebar({ toggleSidebar, setToggleSidebar }) {
             } overflow-hidden fast-animation ease-in-out mx-4`}
           >
             <li className="p-2 mt-2 ml-4 text-sm font-semibold text-green-500 rounded-lg hover:bg-gray-300">
-              <a href="/dashboard/productapproval">Danh sách bài</a>
+              <Link to="/dashboard/product-approval" replace>
+                Danh sách bài
+              </Link>
             </li>
           </ul>
         </div>
@@ -175,7 +180,9 @@ function Sidebar({ toggleSidebar, setToggleSidebar }) {
             } overflow-hidden fast-animation ease-in-out mx-4`}
           >
             <li className="p-2 mt-2 ml-4 text-sm font-semibold text-green-500 rounded-lg hover:bg-gray-300">
-              <a href="/dashboard/accountmanager">Danh sách tài khoản</a>
+              <Link to="/dashboard/account-manager" replace>
+                Danh sách tài khoản
+              </Link>
             </li>
           </ul>
         </div>
