@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 function Card() {
   const navigate = useNavigate();
   const handleOnClick = useCallback(
-    () => navigate("/dashboard/details", { replace: true }),
+    () => navigate("/dashboard/details", { replace: false }),
     [navigate]
   );
   return (
