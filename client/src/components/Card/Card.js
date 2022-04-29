@@ -10,7 +10,7 @@ function Card() {
   );
   return (
     <div className="simple-card" onClick={handleOnClick}>
-      <div className="relative w-full h-3/6">
+      <div className="relative w-full h-[40%]">
         <img
           src="https://cdn.tgdd.vn/Products/Images/8785/222783/bhx/mang-tay-bo-200g-202012082233101204.jpg"
           alt=""
