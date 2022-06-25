@@ -36,8 +36,7 @@ function Instructions() {
           <h2>ĐĂNG KÝ TÀI KHOẢN</h2>
           <hr />
           <br />
-          <p>Sử dụng tên tài khoản và mật khẩu để đăng ký và đăng nhập</p>
-          <p>Lưu ý: Vui lòng liên hệ để đăng ký</p>
+          <p>Sử dụng tài khoản Google để đăng nhập hoặc đăng ký</p>
         </div>
         <BsArrowRightCircleFill className="hidden text-5xl text-green-500 2xl:block xl:block" />
         <div
@@ -77,9 +76,7 @@ function Instructions() {
           <hr />
           <br />
           <p>
-            Sau khi tạo sản phẩm, mã sẽ được tạo theo chuẩn GS1. Đơn vị/Tổ chức
-            tải mã về và in ấn trực tiếp lên bao bì sản phẩm hoặc in tem nhãn
-            dán lên bao bì sản phẩm.
+            Sau khi tạo sản phẩm, sẽ tạo mã sản phẩm theo chuẩn GS1. 
           </p>
         </div>
         <BsArrowRightCircleFill className="hidden text-5xl text-green-500 2xl:block xl:block" />

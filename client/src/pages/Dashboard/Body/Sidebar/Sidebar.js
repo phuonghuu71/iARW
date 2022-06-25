@@ -21,7 +21,7 @@ function Sidebar({ toggleSidebar, setToggleSidebar }) {
       className={`h-full p-3 ${
         toggleSidebar
           ? "translate-x-0"
-          : "2xl:-translate-x-[15.5rem] xl:-translate-x-[11.5rem]"
+          : "2xl:-translate-x-[12rem] xl:-translate-x-[11.5rem]"
       } fixed z-20 left-0 w-2/12 bg-white border border-solid border-y-0 border-l-0 border-r-[1px] border-gray-200 transition-all duration-300`}
     >
       <div className="w-full py-2">

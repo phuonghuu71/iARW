@@ -86,9 +86,9 @@ function Navigation() {
         </div>
 
         <div className="register-login-container">
-          <a href="" className="register-button">
+          {/* <a href="" className="register-button">
             Đăng ký
-          </a>
+          </a> */}
           <button
             className="login-button"
             onClick={() => setLoginMenuModal(!loginMenuModal)}

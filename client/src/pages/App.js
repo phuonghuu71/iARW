@@ -8,13 +8,16 @@ import { Route, Routes } from "react-router-dom";
 
 function App() {
   AOS.init();
+
+  const user = JSON.parse(localStorage.getItem("profile"));
+
   return (
     <div>
       {/* <Dashboard /> */}
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/dashboard/*" element={<Dashboard />} />
+        <Route path="/dashboard/*" element={user ? <Dashboard /> : <Home />} />
       </Routes>
     </div>
   );

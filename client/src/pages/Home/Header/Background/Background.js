@@ -1,22 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef } from "react";
+import ScrollEffect from "../../../../assets/utils/ScrollEffect";
 
 function Background() {
-  const greenNavEl = useRef(null);
-  const [offset, setOffset] = useState(0);
-
   // on scroll event
-  useEffect(() => {
-    const onScroll = () => setOffset(window.pageYOffset);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [offset]);
-
-  // change green nav on scroll
-  useEffect(() => {
-    const green_nav = greenNavEl.current;
-    if (offset > 50) green_nav.classList.add("active");
-    else green_nav.classList.remove("active");
-  }, [offset, greenNavEl]);
+  const greenNavEl = useRef(null);
+  ScrollEffect(greenNavEl, 50);
 
   return (
     <div>

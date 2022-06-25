@@ -8,17 +8,34 @@ function Dropdown({
   items,
   multiSelect = false,
   position = "bottom",
+  setItem,
+  showModal,
 }) {
   const [open, setOpen] = useState(false);
   const [selection, setSelection] = useState([]);
   const toggle = () => setOpen(!open);
 
+  useEffect(() => {
+    if (!showModal) {
+      setOpen(false);
+      setSelection([]);
+    }
+  }, [showModal]);
+
   function handleOnClick(item) {
     if (!selection.some((current) => current.id === item.id)) {
       if (!multiSelect) {
         setSelection([item]);
+        setItem([
+          {
+            ...item,
+            id: item.id,
+            value: item.value,
+          },
+        ]);
       } else if (multiSelect) {
         setSelection([...selection, item]);
+        setItem([...selection, item]);
       }
     } else {
       let selectionAfterRemoval = selection;
@@ -49,7 +66,9 @@ function Dropdown({
         <div className="mr-2 text-green-600 dd-header__title">
           {selection.length > 0 && multiSelect === false ? (
             selection.map((item) => (
-              <p className="dd-header__title--bold">{item.value}</p>
+              <p className="dd-header__title--bold" key={item.id}>
+                {item.value}
+              </p>
             ))
           ) : (
             <p className="dd-header__title--bold">
@@ -75,7 +94,10 @@ function Dropdown({
               <button
                 className="flex justify-between bg-white py-2 px-5 border-none border-b-[1px] border-green-400 text-center w-full border-x-[1px]"
                 type="button"
-                onClick={() => handleOnClick(item)}
+                onClick={() => {
+                  handleOnClick(item);
+                  setOpen(false);
+                }}
               >
                 <span>{item.value}</span>
               </button>

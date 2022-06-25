@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   AiOutlineArrowDown,
   AiOutlineArrowRight,
@@ -9,16 +9,17 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
+import ScrollEffect from "../../../../assets/utils/ScrollEffect";
+
+import "./styles.css";
 
 function Intro() {
+  const ItemEl = useRef(null);
+  ScrollEffect(ItemEl, 40);
+
   return (
     <div className="relative flex h-[calc(100vh-4rem)] mt-16 items-center justify-around w-full">
-      <div
-        className="hidden w-5/12 rounded-t-full h-5/6 2xl:block xl:block"
-        data-aos="fade-right"
-        data-aos-duration="1000"
-        data-aos-delay="100"
-      >
+      <div className="left-item" ref={ItemEl}>
         <div className="relative flex flex-col justify-between w-3/4 h-full m-auto rounded-t-full shadow-xl">
           <div className="w-full h-full">
             <img
@@ -35,7 +36,7 @@ function Intro() {
               </p>
             </div>
             <a
-              href=""
+              href="/"
               className="relative flex flex-col items-center justify-center h-full text-center text-white bg-green-500 w-72 hover:bg-green-600"
             >
               <div>
@@ -87,7 +88,7 @@ function Intro() {
                 </div>
                 <a
                   className="flex items-center justify-center h-12 px-2 mx-6 text-white bg-green-500 rounded-full hover:bg-green-600"
-                  href=""
+                  href="/"
                 >
                   <div>
                     <p>Tư vấn tại đây</p>
@@ -125,8 +126,6 @@ function Intro() {
               </div>
             </div>
           </SwiperSlide>
-          <SwiperSlide>Slide 3</SwiperSlide>
-          <SwiperSlide>Slide 4</SwiperSlide>
         </Swiper>
       </div>
     </div>

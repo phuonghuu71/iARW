@@ -6,7 +6,7 @@ function ProductDetails() {
   const navigate = useNavigate();
   return (
     <div className="flex justify-between p-4 bg-white rounded-md">
-      <div className="fixed z-10 bottom-10 right-10">
+      <div className="fixed z-10 top-30 right-10">
         <button className="button button-warning" onClick={() => navigate(-1)}>
           Quay lại
         </button>

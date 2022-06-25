@@ -3,10 +3,7 @@ import { IoAdd } from "react-icons/io5";
 import { BsSearch } from "react-icons/bs";
 import DropDown from "../../../../../components/DropDown/DropDown";
 
-import Table, {
-  TableContent,
-  TableHeader,
-} from "../../../../../components/Table/Table";
+import Table from "../../../../../components/Table/Table";
 import { tmp_product } from "../../../../../assets/tmp/tmp_product";
 
 function ProductApproval() {
@@ -16,7 +13,7 @@ function ProductApproval() {
         <h2 className="h2-text">Duyệt sản phẩm</h2>
       </div>
       <div className="flex flex-col m-4">
-        <Table title="Sản phẩm của bạn">
+        {/* <Table title="Sản phẩm của bạn">
           <TableHeader>
             <tr className="border-b">
               <th
@@ -87,7 +84,7 @@ function ProductApproval() {
               );
             })}
           </TableContent>
-        </Table>
+        </Table> */}
       </div>
       <br />
     </div>

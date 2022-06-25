@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import { IoAdd } from "react-icons/io5";
 import { BsSearch } from "react-icons/bs";
 
-import Table, {
-  TableContent,
-  TableHeader,
-} from "../../../../../components/Table/Table";
+import Table from "../../../../../components/Table/Table";
 import { tmp_acc } from "../../../../../assets/tmp/tmp_acc";
 
 function AccountManagement() {
@@ -44,7 +41,7 @@ function AccountManagement() {
             &nbsp;Tìm Kiếm
           </button>
         </div>
-        <Table title="Sản phẩm của bạn">
+        {/* <Table title="Sản phẩm của bạn">
           <TableHeader>
             <tr className="border-b">
               <th
@@ -104,7 +101,7 @@ function AccountManagement() {
               );
             })}
           </TableContent>
-        </Table>
+        </Table> */}
       </div>
       <br />
     </div>

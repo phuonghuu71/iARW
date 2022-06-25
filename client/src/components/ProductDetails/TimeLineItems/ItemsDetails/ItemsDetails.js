@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { BsChevronDown, BsChevronRight } from "react-icons/bs";
 
-function ItemsDetails({ step }) {
+function ItemsDetails({ step, stepNum }) {
   const [toggleAccordion, setToggleAccordion] = useState(false);
   return (
     <div
@@ -12,18 +12,30 @@ function ItemsDetails({ step }) {
     >
       <div className="flex items-center">
         {!toggleAccordion ? (
-          <BsChevronRight className="mr-2 text-sm h2-text" />
+          <BsChevronRight
+            className={`text-sm h2-text ${
+              stepNum >= 4 ? "text-orange-500" : ""
+            }`}
+          />
         ) : (
-          <BsChevronDown className="mr-2 text-sm h2-text" />
+          <BsChevronDown
+            className={`text-sm h2-text ${
+              stepNum >= 4 ? "text-orange-500" : ""
+            }`}
+          />
         )}
-        <h2 className="text-sm h2-text">
+        <h2
+          className={`text-sm h2-text ${stepNum >= 4 ? "text-orange-500" : ""}`}
+        >
           {`${step.timeline.time}, ${step.timeline.date}, ${step.timeline.note}`}
         </h2>
       </div>
       <div
         className={`${
           toggleAccordion ? "block" : "hidden"
-        } px-4 py-2 text-white rounded-md bg-green-500`}
+        } px-4 py-2 text-white rounded-md ${
+          stepNum >= 4 ? "bg-orange-500" : "bg-green-500"
+        }`}
       >
         <p className="mb-2">Chú thích: </p>
         {step.tags.map((tag, index) => {

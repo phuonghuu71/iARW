@@ -1,18 +1,14 @@
-import React, {
-  useEffect,
-  useState,
-  useContext,
-  useRef,
-  useCallback,
-} from "react";
-import { BsSearch } from "react-icons/bs";
-import { AiOutlineMail, AiOutlineUser, AiOutlineCheck } from "react-icons/ai";
-import { RiLockPasswordLine } from "react-icons/ri";
+import React, { useEffect, useState, useContext, useRef } from "react";
 
 import { LoginContext } from "../../pages/Home/Home";
-import CheckBox from "../CheckBox/CheckBox";
-
 import { useNavigate } from "react-router-dom";
+
+import GoogleLogin from "react-google-login";
+import { AiOutlineUser } from "react-icons/ai";
+
+import { useDispatch } from "react-redux";
+
+import { user_auth } from "../../actions/auth.js";
 
 function Login() {
   // open login menu modal
@@ -34,10 +30,25 @@ function Login() {
   }, [loginMenuModal]);
 
   const navigate = useNavigate();
-  const handleOnClick = useCallback(
-    () => navigate("/dashboard", { replace: true }),
-    [navigate]
-  );
+  const dispatch = useDispatch();
+
+  const googleSuccess = async (res) => {
+    const result = res?.profileObj;
+    try {
+      dispatch(
+        user_auth(
+          {
+            ...result,
+            id: result.googleId,
+          },
+          navigate
+        )
+      );
+    } catch (error) {
+      console.log(error);
+    }
+    console.log(result);
+  };
 
   return (
     <div
@@ -47,7 +58,7 @@ function Login() {
       }`}
     >
       <div
-        className={`relative w-4/12 p-8 bg-white rounded-xl h-4/6 -translate-y-10 transition-all duration-300 ease-in-out ${
+        className={`relative w-3/12 p-8 bg-white rounded-xl h-[40%] -translate-y-10 transition-all duration-300 ease-in-out ${
           loginMenuModal ? "translate-y-0" : ""
         }`}
       >
@@ -59,18 +70,17 @@ function Login() {
             &times;
           </span>
         </div>
-
         <div className="absolute flex items-center justify-center w-32 h-32 -translate-x-1/2 bg-green-500 rounded-full -top-16 left-1/2">
           <AiOutlineUser className="text-6xl text-white" />
         </div>
-
         <h2 className="mt-16 text-xl font-bold text-center text-green-500">
           Đăng Nhập
         </h2>
-
+        <p className="text-base text-center text-green-500">
+          Đăng nhập vào tài khoản của bạn, nếu chưa có sẽ tự động đăng ký
+        </p>
         <br />
-
-        <div>
+        {/* <div>
           <p className="text-lg font-semibold text-green-600">Email</p>
           <div className="relative w-full pt-2 mx-auto text-gray-600">
             <AiOutlineMail className="absolute top-5 left-3" />
@@ -81,11 +91,9 @@ function Login() {
               placeholder="Nhập Email"
             />
           </div>
-        </div>
-
-        <br />
-
-        <div>
+        </div> */}
+        {/* <br /> */}
+        {/* <div>
           <p className="text-lg font-semibold text-green-600">Mật khẩu</p>
           <div className="relative w-full pt-2 mx-auto text-gray-600">
             <RiLockPasswordLine className="absolute top-5 left-3" />
@@ -96,27 +104,32 @@ function Login() {
               placeholder="Nhập mật khẩu"
             />
           </div>
-        </div>
-
-        <br />
-
-        <div className="flex items-center justify-between">
+        </div> */}
+        {/* <br /> */}
+        {/* <div className="flex items-center justify-between">
           <CheckBox content={"Ghi nhớ mật khẩu"} />
           <div className="transition-all duration-300 hover:text-green-500">
             <a href="#">Quên mật khẩu?</a>
           </div>
-        </div>
-
-        <br />
-
-        <div>
-          <button
-            className="w-full py-3 text-xl font-bold text-white bg-green-500 hover:bg-green-600 rounded-xl"
-            onClick={handleOnClick}
-          >
-            Đăng nhập
-          </button>
-        </div>
+        </div> */}
+        {/* <br /> */}
+        <GoogleLogin
+          clientId="946073039637-po56jcec2bhf33j81brts0k0tksd0j5f.apps.googleusercontent.com"
+          buttonText="Login"
+          onSuccess={googleSuccess}
+          // onFailure={responseGoogle}
+          render={(renderProps) => (
+            <button
+              className="w-full py-3 text-xl font-bold text-white bg-green-500 hover:bg-green-600 rounded-xl"
+              // onClick={handleOnClick}
+              onClick={renderProps.onClick}
+              disabled={renderProps.disabled}
+            >
+              Đăng nhập bằng Google
+            </button>
+          )}
+          cookiePolicy={"single_host_origin"}
+        />
       </div>
     </div>
   );

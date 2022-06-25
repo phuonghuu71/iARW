@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import { IoAdd } from "react-icons/io5";
 import CreateProcess from "./CreateProcess/CreateProcess";
-import Table, {
-  TableContent,
-  TableHeader,
-} from "../../../../../../components/Table/Table";
+import Table from "../../../../../../components/Table/Table";
 
 function ProcessManagement() {
   const [showModalCreate, setShowModalCreate] = useState(false);
@@ -46,7 +43,7 @@ function ProcessManagement() {
             &nbsp;Tìm Kiếm
           </button>
         </div>
-        <Table title="Sản phẩm của bạn">
+        {/* <Table title="Sản phẩm của bạn">
           <TableHeader>
             <tr className="border-b">
               <th
@@ -117,7 +114,7 @@ function ProcessManagement() {
               </td>
             </tr>
           </TableContent>
-        </Table>
+        </Table> */}
       </div>
       <br />
     </div>

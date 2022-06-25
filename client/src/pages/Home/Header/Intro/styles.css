@@ -1,0 +1,7 @@
+.left-item {
+  @apply hidden w-5/12 transition-all duration-500 delay-700 translate-x-0 rounded-t-full h-5/6 2xl:block xl:block;
+}
+
+.left-item.active {
+  @apply -translate-x-[1000px];
+}
