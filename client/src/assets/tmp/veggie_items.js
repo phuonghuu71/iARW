@@ -1,4 +1,4 @@
-const veggies_items = [
+const prodType = [
   {
     id: 4,
     value: "Rau củ",
@@ -13,4 +13,4 @@ const veggies_items = [
   },
 ];
 
-export default veggies_items;
+export default prodType;

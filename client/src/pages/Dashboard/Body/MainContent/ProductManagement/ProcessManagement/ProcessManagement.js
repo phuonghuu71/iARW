@@ -1,11 +1,171 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import { IoAdd } from "react-icons/io5";
 import CreateProcess from "./CreateProcess/CreateProcess";
-import Table from "../../../../../../components/Table/Table";
+import Table, {
+  DefaultColumnFilter,
+} from "../../../../../../components/Table/Table";
+import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getProcByProds } from "../../../../../../actions/process";
+
+import {
+  useTable,
+  useSortBy,
+  usePagination,
+  useFilters,
+  useGlobalFilter,
+  useFlexLayout,
+} from "react-table";
+import EditProcess from "./EditProcess/EditProcess";
+import DeleteProcess from "./DeleteProcess/DeleteProcess";
+import { toast } from "react-toastify";
 
 function ProcessManagement() {
+  const dispatch = useDispatch();
+
+  const [fetchData, setFetchData] = useState();
+
   const [showModalCreate, setShowModalCreate] = useState(false);
+  const [showModalEdit, setShowModalEdit] = useState(false);
+  const [showModalDelete, setShowModalDelete] = useState(false);
+
+  const { state } = useLocation();
+
+  useEffect(() => {
+    dispatch(getProcByProds(state.payload._id));
+  }, [dispatch]);
+
+  const { procDatas, isLoading } = useSelector((state) => {
+    return state.process;
+  });
+
+  const columns = useMemo(
+    () => [
+      {
+        Header: "#",
+        width: 50,
+        Cell: (row) => {
+          return <div>{Number(row.row.id) + 1}</div>;
+        },
+      },
+      {
+        Header: "Bước",
+        accessor: "step",
+        width: 200,
+      },
+      {
+        Header: "Mô tả",
+        accessor: "description",
+        width: 300,
+      },
+      {
+        Header: "Ghi chú",
+        accessor: "note",
+        width: 250,
+      },
+      {
+        Header: "Ngày đăng",
+        accessor: "createdAt",
+        width: 200,
+      },
+      {
+        Header: () => <div className="text-right">Thao tác</div>,
+        id: (row) => row.row.id,
+        width: 350,
+        Cell: (row) => {
+          return (
+            <div className="flex justify-end">
+              <div>
+                <button
+                  onClick={() => {
+                    let date = new Date(row.row.original.createdAt);
+
+                    let today = new Date();
+
+                    let seconds = Math.floor((today - date) / 1000);
+                    let minutes = Math.floor(seconds / 60);
+                    let hours = Math.floor(minutes / 60);
+
+                    if (hours > 1) {
+                      toast("Đã quá 1 giờ, không thể sửa", {
+                        position: "bottom-right",
+                        autoClose: 1000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                      });
+                    } else {
+                      setFetchData(row.row.original);
+                      setShowModalEdit(true);
+                    }
+                  }}
+                  className="px-3 py-1 mr-2 text-white transition-all duration-150 bg-blue-500 rounded-full hover:bg-blue-600"
+                >
+                  Chỉnh sửa
+                </button>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    let date = new Date(row.row.original.createdAt);
+
+                    let today = new Date();
+
+                    let seconds = Math.floor((today - date) / 1000);
+                    let minutes = Math.floor(seconds / 60);
+
+                    if (minutes > 15) {
+                      toast("Đã quá 15 phút, không thể xóa", {
+                        position: "bottom-right",
+                        autoClose: 1000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                      });
+                    } else {
+                      setFetchData(row.row.original);
+                      setShowModalDelete(true);
+                    }
+                  }}
+                  className="px-3 py-1 text-white transition-all duration-150 bg-red-500 rounded-full hover:bg-red-600"
+                >
+                  Xóa
+                </button>
+              </div>
+            </div>
+          );
+        },
+      },
+    ],
+    []
+  );
+
+  const defaultColumn = useMemo(
+    () => ({
+      // Let's set up our default Filter UI
+      Filter: DefaultColumnFilter,
+    }),
+    []
+  );
+
+  const procInstance = useTable(
+    {
+      columns,
+      data: procDatas,
+      defaultColumn,
+    },
+    useFilters,
+    useGlobalFilter,
+    useSortBy,
+    useFlexLayout,
+    usePagination
+  );
 
   return (
     <div className="w-full h-full p-4">
@@ -22,101 +182,33 @@ function ProcessManagement() {
           <CreateProcess
             showModal={showModalCreate}
             setShowModal={setShowModalCreate}
+            data={{ id: state.payload._id }}
           />
         </div>
       </div>
       <div className="flex flex-col m-4">
         <div className="flex items-center w-full p-4 my-4 ml-auto bg-white rounded-md shadow-md">
           <div className="w-[12rem]">
-            <h2 className="h2-text">Khoai tây 1 kg</h2>
+            <h2 className="h2-text">{state.payload.prodName}</h2>
           </div>
-          <div className="relative ml-auto mr-2 text-gray-600 w-96">
-            <input
-              className="w-full h-10 px-5 pr-16 text-sm bg-white border-2 border-gray-300 rounded-lg focus:outline-none"
-              type="search"
-              name="search"
-              placeholder="Nhập nông sản bạn cần tìm"
-            />
-          </div>
-          <button className="flex items-center px-3 py-2 pt-1 text-lg text-white transition-all duration-150 bg-green-500 rounded-md shadow-md hover:bg-green-600">
-            <BsSearch />
-            &nbsp;Tìm Kiếm
-          </button>
         </div>
-        {/* <Table title="Sản phẩm của bạn">
-          <TableHeader>
-            <tr className="border-b">
-              <th
-                scope="col"
-                className="px-6 py-4 text-sm font-medium text-left text-gray-900"
-              >
-                #
-              </th>
-              <th className="px-6 py-4 text-sm font-medium text-center text-gray-900">
-                Tên quy trình
-              </th>
-              <th className="px-6 py-4 text-sm font-medium text-center text-gray-900">
-                Ngày đăng
-              </th>
-              <th className="px-6 py-4 text-sm font-medium text-center text-gray-900">
-                Mốc thời gian
-              </th>
-              <th className="px-6 py-4 text-sm font-medium text-center text-gray-900">
-                Đang ở bước
-              </th>
-              <th className="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                Ghi chú
-              </th>
-              <th
-                scope="col"
-                className="px-6 py-4 text-sm font-medium text-right text-gray-900"
-              >
-                Thao tác
-              </th>
-            </tr>
-          </TableHeader>
-          <TableContent>
-            <tr className="">
-              <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
-                1
-              </td>
-              <td className="px-6 py-4 text-sm font-light text-center text-gray-900 whitespace-nowrap">
-                <p className="truncate w-36 text-ellipsis">Vận chuyển</p>
-              </td>
-              <td className="px-6 py-4 text-sm font-light text-center text-gray-900 whitespace-nowrap">
-                16/4/2022
-              </td>
-              <td className="px-6 py-4 text-sm font-light text-center text-gray-900 whitespace-nowrap">
-                17h30
-              </td>
-              <td className="flex justify-center px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
-                <div className="px-3 py-1 mr-2 text-white bg-orange-500 rounded-full">
-                  Bước 4 - Vận chuyển
-                </div>
-              </td>
-              <td className="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
-                <p className="truncate w-96 text-ellipsis">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Numquam, officiis. Deleniti praesentium, eum odit sit minus
-                  repudiandae, et ea eos inventore obcaecati quasi unde vero ab
-                  velit harum, iure porro.
-                </p>
-              </td>
-              <td className="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
-                <div className="flex justify-end">
-                  <button className="px-3 py-1 mr-2 text-white transition-all duration-150 bg-blue-500 rounded-full hover:bg-blue-600">
-                    Chỉnh sửa
-                  </button>
-                  <button className="px-3 py-1 text-white transition-all duration-150 bg-red-500 rounded-full hover:bg-red-600">
-                    Xóa
-                  </button>
-                </div>
-              </td>
-            </tr>
-          </TableContent>
-        </Table> */}
+
+        <Table title="Quy trình sản phẩm" instance={procInstance} />
       </div>
+
       <br />
+
+      <EditProcess
+        data={fetchData}
+        showModal={showModalEdit}
+        setShowModal={setShowModalEdit}
+      />
+
+      <DeleteProcess
+        data={fetchData}
+        showModal={showModalDelete}
+        setShowModal={setShowModalDelete}
+      />
     </div>
   );
 }

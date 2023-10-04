@@ -3,14 +3,23 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const fiveStepsProcess = Schema({
-  fiveStepsStepId: { type: Schema.Types.ObjectId, ref: "FiveStepsStep" },
-  fiveStepsNotes: [{ type: Schema.Types.ObjectId, ref: "FiveStepsNote" }],
+  productId: { type: Schema.Types.ObjectId, ref: "Product" },
+  step: { type: String, required: true, default: "Empty" },
+  note: { type: String, required: true, default: "Empty" },
   description: { type: String, required: true, default: "Empty" },
   createdAt: {
-    type: Date,
+    type: String,
     default: new Date()
-      .toISOString({ timeZone: "Asia/Ho_Chi_Minh" })
-      .slice(0, 10),
+      .toLocaleString("sv-SE", { timeZone: "Asia/Ho_Chi_Minh" })
+      .slice(0, 16)
+      .replace("T", " "),
+  },
+  updatedAt: {
+    type: String,
+    default: new Date()
+      .toLocaleString("sv-SE", { timeZone: "Asia/Ho_Chi_Minh" })
+      .slice(0, 16)
+      .replace("T", " "),
   },
 });
 

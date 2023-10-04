@@ -16,7 +16,11 @@ function Modal(props) {
 
   return (
     <div ref={modalRef} className={`${props.show ? "modal-active" : ""} modal`}>
-      <div className="modal-content">
+      <div
+        className={`${
+          props.width === "wide" ? "modal-content-wide" : "modal-content"
+        }`}
+      >
         {!props.hideCloseButton && (
           <span onClick={() => props.setShow(false)} className="modal-close">
             &times;

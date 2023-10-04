@@ -6,7 +6,9 @@ import CreateProduct from "./CreateProduct/CreateProduct";
 import EditProduct from "./EditProduct/EditProduct";
 
 import DeleteProduct from "./DeleteProduct/DeleteProduct";
-import Table from "../../../../../components/Table/Table";
+import Table, {
+  DefaultColumnFilter,
+} from "../../../../../components/Table/Table";
 import { useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -14,6 +16,8 @@ import { getProdTypes } from "../../../../../actions/product_type.js";
 import { getProdsByUsr } from "../../../../../actions/product.js";
 
 import { useLocation } from "react-router-dom";
+
+import prodType from "../../../../../assets/tmp/veggie_items.js";
 
 import {
   useTable,
@@ -29,6 +33,8 @@ function useQuery() {
 }
 
 function ProductManagement() {
+  console.log(prodType);
+
   const [showModalCreate, setShowModalCreate] = useState(false);
   const [showModalEdit, setShowModalEdit] = useState(false);
   const [showModalDelete, setShowModalDelete] = useState(false);
@@ -36,22 +42,15 @@ function ProductManagement() {
 
   const navigate = useNavigate();
   const handleOnClick = useCallback(
-    () => navigate("/dashboard/process-manager", { replace: true }),
+    (data) =>
+      navigate("/dashboard/process-manager", {
+        replace: true,
+        state: { payload: data },
+      }),
     [navigate]
   );
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getProdTypes());
-  }, [dispatch]);
-
-  const prodTypeDatas = useSelector((state) => {
-    return state.productType.prodTypeDatas.map(({ _id, typeName }) => ({
-      id: _id,
-      value: typeName,
-    }));
-  });
 
   const { result } = JSON.parse(localStorage.getItem("profile"));
 
@@ -88,7 +87,15 @@ function ProductManagement() {
         width: 200,
         Cell: (row) => {
           return (
-            <div className="px-3 py-1 mr-2 text-center text-white bg-yellow-500 rounded-full">
+            <div
+              className={`px-3 py-1 mr-2 text-center text-white rounded-full ${
+                row.row.original.status === "Chấp thuận"
+                  ? "bg-green-500"
+                  : row.row.original.status === "Từ chối"
+                  ? "bg-red-500"
+                  : "bg-yellow-500"
+              }`}
+            >
               {row.row.original.status}
             </div>
           );
@@ -97,7 +104,7 @@ function ProductManagement() {
       {
         Header: "Loại sản phẩm",
         accessor: "prodType",
-        width: 200,
+        width: 150,
         filter: "includes",
         Filter: ({ column }) => {
           const { filterValue, setFilter, preFilteredRows, id } = column;
@@ -112,13 +119,6 @@ function ProductManagement() {
             return [...options.values()];
           }, [id, preFilteredRows]);
 
-          const cvtData = useSelector((state) => {
-            return state.productType.prodTypeDatas.map(({ _id, typeName }) => ({
-              id: _id,
-              value: typeName,
-            }));
-          });
-
           return (
             <select
               value={filterValue}
@@ -130,26 +130,15 @@ function ProductManagement() {
               <option value="">All</option>
               {options.map((option, i) => (
                 <option key={i} value={option}>
-                  {cvtData
-                    .find((prod) => prod.id.toString() === option.toString())
-                    .value.toString()}
+                  {option}
                 </option>
               ))}
             </select>
           );
         },
-        Cell: (row) =>
-          useSelector((state) => {
-            return state.productType.prodTypeDatas.map(({ _id, typeName }) => ({
-              id: _id,
-              value: typeName,
-            }));
-          })
-            .find(
-              (prod) =>
-                prod.id.toString() === row.row.original.prodType.toString()
-            )
-            .value.toString(),
+        Cell: (row) => {
+          return row.row.original.prodType;
+        },
       },
       {
         Header: () => <div className="text-right">Thao tác</div>,
@@ -158,35 +147,52 @@ function ProductManagement() {
         Cell: (row) => {
           return (
             <div className="flex justify-end">
-              <div>
+              <div
+                className={
+                  row.row.original.status.toString() === "Chờ xác nhận" ||
+                  row.row.original.status.toString() === "Từ chối"
+                    ? "hidden"
+                    : "block"
+                }
+              >
                 <button
-                  onClick={handleOnClick}
+                  onClick={() => {
+                    handleOnClick(row.row.original);
+                  }}
                   className="px-3 py-1 mr-2 text-white transition-all duration-150 bg-orange-500 rounded-full hover:bg-orange-600"
                 >
                   Quản lý quy trình 5 bước
                 </button>
               </div>
-              <div>
-                <button
-                  onClick={() => {
-                    setFetchData(row.row.original);
-                    setShowModalEdit(true);
-                  }}
-                  className="px-3 py-1 mr-2 text-white transition-all duration-150 bg-blue-500 rounded-full hover:bg-blue-600"
-                >
-                  Chỉnh sửa
-                </button>
-              </div>
-              <div>
-                <button
-                  onClick={() => {
-                    setFetchData(row.row.original);
-                    setShowModalDelete(true);
-                  }}
-                  className="px-3 py-1 text-white transition-all duration-150 bg-red-500 rounded-full hover:bg-red-600"
-                >
-                  Xóa
-                </button>
+              <div
+                className={`flex ${
+                  row.row.original.status.toString() === "Chấp thuận"
+                    ? "hidden"
+                    : "block"
+                }`}
+              >
+                <div>
+                  <button
+                    onClick={() => {
+                      setFetchData(row.row.original);
+                      setShowModalEdit(true);
+                    }}
+                    className="px-3 py-1 mr-2 text-white transition-all duration-150 bg-blue-500 rounded-full hover:bg-blue-600"
+                  >
+                    Chỉnh sửa
+                  </button>
+                </div>
+                <div>
+                  <button
+                    onClick={() => {
+                      setFetchData(row.row.original);
+                      setShowModalDelete(true);
+                    }}
+                    className="px-3 py-1 text-white transition-all duration-150 bg-red-500 rounded-full hover:bg-red-600"
+                  >
+                    Xóa
+                  </button>
+                </div>
               </div>
             </div>
           );
@@ -217,27 +223,6 @@ function ProductManagement() {
     usePagination
   );
 
-  const [itemType, setItemType] = useState([
-    {
-      id: "",
-      value: "",
-    },
-  ]);
-  // Define a default UI for filtering
-  function DefaultColumnFilter({ column }) {
-    const { filterValue, preFilteredRows, setFilter } = column;
-    return (
-      <input
-        value={filterValue || ""}
-        onChange={(e) => {
-          setFilter(e.target.value || undefined); // Set undefined to remove the filter entirely
-        }}
-        className="w-full px-2 border border-green-500 rounded-md outline-none"
-        placeholder="Nhập thông tin"
-      />
-    );
-  }
-
   return (
     <div className="w-full h-full p-4">
       <div className="flex items-center justify-between mx-4 mb-2">
@@ -250,32 +235,41 @@ function ProductManagement() {
             <IoAdd />
             &nbsp;Tạo mới
           </button>
-          <CreateProduct
-            type={prodTypeDatas}
-            user={result}
-            showModal={showModalCreate}
-            setShowModal={setShowModalCreate}
-          />
         </div>
       </div>
+
       <div className="flex flex-col m-4">
         <Table title="Sản phẩm của bạn" instance={prodInstance} />
       </div>
 
       <br />
 
-      <EditProduct
-        data={fetchData}
-        showModal={showModalEdit}
-        setShowModal={setShowModalEdit}
-      />
+      {showModalCreate ? (
+        <CreateProduct
+          type={prodType}
+          user={result}
+          showModal={showModalCreate}
+          setShowModal={setShowModalCreate}
+        />
+      ) : null}
 
-      <DeleteProduct
-        data={fetchData}
-        showModal={showModalDelete}
-        setShowModal={setShowModalDelete}
-        user={result}
-      />
+      {showModalEdit ? (
+        <EditProduct
+          type={prodType}
+          data={fetchData}
+          showModal={showModalEdit}
+          setShowModal={setShowModalEdit}
+        />
+      ) : null}
+
+      {showModalDelete ? (
+        <DeleteProduct
+          data={fetchData}
+          showModal={showModalDelete}
+          setShowModal={setShowModalDelete}
+          user={result}
+        />
+      ) : null}
     </div>
   );
 }

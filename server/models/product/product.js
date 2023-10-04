@@ -10,14 +10,23 @@ const productSchema = Schema({
   prodCode: { type: String, required: true },
   status: { type: String, required: true },
   qty: { type: Number, required: false },
+  views: { type: Number, required: false, default: 0 },
   unit: { type: String, required: false },
   origin: { type: String, required: false },
-  prodType: { type: Schema.Types.ObjectId, ref: "ProductType", required: true },
+  img: { type: String, required: false, default: "Empty" },
+  prodType: { type: String, required: false, default: "Empty" },
   process_steps: [{ type: Schema.Types.ObjectId, ref: "FiveStepsProcess" }],
   createdAt: {
     type: String,
     default: new Date()
-      .toISOString({ timeZone: "Asia/Ho_Chi_Minh" })
+      .toLocaleString("sv-SE", { timeZone: "Asia/Ho_Chi_Minh" })
+      .slice(0, 16)
+      .replace("T", " "),
+  },
+  updatedAt: {
+    type: String,
+    default: new Date()
+      .toLocaleString("sv-SE", { timeZone: "Asia/Ho_Chi_Minh" })
       .slice(0, 16)
       .replace("T", " "),
   },

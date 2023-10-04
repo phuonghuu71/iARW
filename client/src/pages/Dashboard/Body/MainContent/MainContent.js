@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import ProductDetails from "../../../../components/ProductDetails/ProductDetails";
 import AccountManagement from "./AccountManagement/AccountManagement";
+import Chat from "./Chat/Chat";
 import Homepage from "./Homepage/Homepage";
 import ProductApproval from "./ProductApproval/ProductApproval";
 import ProcessManagement from "./ProductManagement/ProcessManagement/ProcessManagement";
@@ -23,6 +24,7 @@ function MainContent({ toggleSidebar }) {
         <Route path="/process-manager" element={<ProcessManagement />} />
         <Route path="/product-approval" element={<ProductApproval />} />
         <Route path="/account-manager" element={<AccountManagement />} />
+        <Route path="/chat" element={<Chat />} />
         <Route path="/details" element={<ProductDetails />} />
       </Routes>
 

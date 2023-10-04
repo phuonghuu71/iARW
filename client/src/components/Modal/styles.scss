@@ -6,11 +6,28 @@
     @apply visible opacity-100;
   }
 
-  &-content {
-    @apply invisible w-4/12 transition-all -translate-y-10 bg-white rounded-md opacity-0 min-h-min;
+  @mixin context {
+    @apply invisible transition-all -translate-y-10 bg-white rounded-md opacity-0 min-h-min;
   }
 
-  &-active &-content {
+  &-content {
+    @include context();
+    @apply w-4/12;
+
+    &-wide {
+      @include context();
+      @apply w-6/12;
+    }
+
+    &-medium {
+      @include context();
+      @apply w-5/12;
+    }
+  }
+
+  &-active &-content,
+  &-content-wide,
+  &-content-medium {
     @apply visible translate-y-0 opacity-100;
   }
 

@@ -12,7 +12,6 @@ function Body() {
         setToggleSidebar={setToggleSidebar}
       />
       <MainContent toggleSidebar={toggleSidebar} />
-      <ToastContainer />
     </div>
   );
 }

@@ -4,8 +4,6 @@ export const getProdTypes = () => async (dispatch) => {
   try {
     const { data } = await api.getProdTypes();
 
-    console.log(data);
-
     dispatch({
       type: "GET_PROD_TYPES",
       payload: {

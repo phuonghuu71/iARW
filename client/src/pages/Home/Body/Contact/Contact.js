@@ -1,9 +1,30 @@
 import React from "react";
+import emailjs from "emailjs-com";
 
 import { AiFillPhone, AiOutlineMail } from "react-icons/ai";
 import { FiMapPin } from "react-icons/fi";
 
 function Contact() {
+  function sendEmail(e) {
+    e.preventDefault(); //This is important, i'm not sure why, but the email won't send without it
+
+    emailjs
+      .sendForm(
+        "service_cvecpvl",
+        "template_vofceyf",
+        e.target,
+        "plkhLdi5bGV-Nxg8y"
+      )
+      .then(
+        (result) => {
+          window.location.reload(); //This is if you still want the page to reload (since e.preventDefault() cancelled that behavior)
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  }
+
   return (
     <div className="contact-container">
       <div className="bg-container -z-10">
@@ -29,10 +50,9 @@ function Contact() {
           <div className="mb-6">
             <h2 className="contact-introduce-title">Liên hệ với chúng tôi</h2>
             <p className="contact-introduce-text">
-              Nếu bạn có thắc mắc hoặc bạn muốn đăng ký chương trình của chúng
-              tôi, đừng ngần ngại điền thông tin vào form đăng ký. Chúng tôi sẽ
-              liên lạc với bạn sớm nhất có thể. Cám ơn bạn đã quan tâm tới dịch
-              vụ của chúng tôi
+              Nếu bạn có thắc mắc, đừng ngần ngại điền thông tin vào form liên
+              hệ. Chúng tôi sẽ liên lạc với bạn sớm nhất có thể. Cám ơn bạn đã
+              quan tâm tới dịch vụ của chúng tôi
             </p>
           </div>
           <div className="contact-introduce-info-container">
@@ -56,70 +76,37 @@ function Contact() {
           </div>
         </div>
         <div className="contact-register-container">
-          <form>
+          <form onSubmit={sendEmail}>
             <div className="contact-register-info-container group">
               <input
                 type="email"
-                name="floating_email"
-                className="contact-register-info-input peer"
+                name="from_email"
+                className="contact-register-info-input peer text-black"
                 placeholder=" "
                 required=""
               />
               <label
-                htmlFor="floating_email"
+                htmlFor="from_email"
                 className="contact-register-info-label"
               >
                 Địa chỉ Email
               </label>
             </div>
-            <div className="contact-register-info-container group">
-              <input
-                type="text"
-                name="floating_first_name"
-                id="floating_first_name"
-                className="contact-register-info-input peer"
-                placeholder=" "
-                required=""
-              />
-              <label
-                htmlFor="floating_first_name"
-                className="contact-register-info-label"
-              >
-                Họ
-              </label>
-            </div>
 
             <div className="contact-register-info-container group">
               <input
                 type="text"
-                name="last_name"
-                id="floating_last_name"
-                className="contact-register-info-input peer"
+                name="from_name"
+                id="floating_name"
+                className="contact-register-info-input peer text-black"
                 placeholder=" "
                 required=""
               />
               <label
-                htmlFor="floating_last_name"
+                htmlFor="from_name"
                 className="contact-register-info-label"
               >
-                Tên
-              </label>
-            </div>
-
-            <div className="contact-register-info-container group">
-              <input
-                type="text"
-                name="phone"
-                id="floating_phone"
-                className="contact-register-info-input peer"
-                placeholder=" "
-                required=""
-              />
-              <label
-                htmlFor="floating_phone"
-                className="contact-register-info-label"
-              >
-                Số điện thoại
+                Họ Tên
               </label>
             </div>
 
@@ -132,7 +119,8 @@ function Contact() {
               </label>
               <textarea
                 id="message"
-                rows="1"
+                name="message"
+                rows="5"
                 className="contact-register-message-input"
                 placeholder="Để lại thắc mắc..."
               ></textarea>
@@ -143,7 +131,7 @@ function Contact() {
                 type="submit"
                 className="contact-register-info-btn-submit"
               >
-                Đăng ký
+                Liên hệ
               </button>
             </div>
           </form>

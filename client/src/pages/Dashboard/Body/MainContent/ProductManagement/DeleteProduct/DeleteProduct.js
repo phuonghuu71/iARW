@@ -22,8 +22,6 @@ function DeleteProduct({ showModal, setShowModal, data, user }) {
 
     dispatch(deleteProduct(data._id));
 
-    dispatch(getProdsByUsr(user, 1));
-
     toast("Xóa sản phẩm thành công", {
       position: "bottom-right",
       autoClose: 1500,

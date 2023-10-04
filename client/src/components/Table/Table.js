@@ -98,7 +98,7 @@ function Table(props) {
                     <tr {...row.getRowProps()}>
                       {row.cells.map((cell, index) => (
                         <td
-                          className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap"
+                          className="px-6 py-4 text-sm font-medium text-gray-900 truncate whitespace-nowrap"
                           {...cell.getCellProps()}
                         >
                           {cell.render("Cell")}
@@ -157,3 +157,18 @@ function Table(props) {
 }
 
 export default Table;
+
+// Define a default UI for filtering
+export function DefaultColumnFilter({ column }) {
+  const { filterValue, preFilteredRows, setFilter } = column;
+  return (
+    <input
+      value={filterValue || ""}
+      onChange={(e) => {
+        setFilter(e.target.value || undefined); // Set undefined to remove the filter entirely
+      }}
+      className="w-full px-2 border border-green-500 rounded-md outline-none"
+      placeholder="Nhập thông tin"
+    />
+  );
+}

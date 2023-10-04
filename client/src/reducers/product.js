@@ -28,6 +28,14 @@ const prodReducer = (state = { prodDatas: [] }, action) => {
         numbPages: action.payload.numbPages,
       };
 
+    case "CHANGE_PROD_STAT":
+      return {
+        ...state,
+        prodDatas: state.prodDatas.map((prod) =>
+          prod._id === action.payload._id ? action.payload : prod
+        ),
+      };
+
     case "UPDATE_PROD":
       return {
         ...state,

@@ -2,13 +2,13 @@ import React, { useState } from "react";
 
 import { BsChevronDown, BsChevronRight } from "react-icons/bs";
 
-function ItemsDetails({ step, stepNum }) {
+function ItemsDetails({ stepId, note, time, stepNum, description }) {
   const [toggleAccordion, setToggleAccordion] = useState(false);
   return (
     <div
       className="pl-12 mb-4 cursor-pointer"
       onClick={() => setToggleAccordion(!toggleAccordion)}
-      key={step.id}
+      key={stepId}
     >
       <div className="flex items-center">
         {!toggleAccordion ? (
@@ -27,7 +27,7 @@ function ItemsDetails({ step, stepNum }) {
         <h2
           className={`text-sm h2-text ${stepNum >= 4 ? "text-orange-500" : ""}`}
         >
-          {`${step.timeline.time}, ${step.timeline.date}, ${step.timeline.note}`}
+          {`${time.substring(11)}, ${time.substring(0, 10)}, ${description}`}
         </h2>
       </div>
       <div
@@ -38,13 +38,7 @@ function ItemsDetails({ step, stepNum }) {
         }`}
       >
         <p className="mb-2">Chú thích: </p>
-        {step.tags.map((tag, index) => {
-          return (
-            <p key={index} className="pl-4 mb-2 leading-relaxed text-justify">
-              {tag}
-            </p>
-          );
-        })}
+        {note}
       </div>
     </div>
   );
