@@ -33,20 +33,20 @@
 
 ### Contact Form
 
-![Untitled](iARW%20Documentation%2090927abe1a5942358a1d730f751778da/Untitled.png)
+![Untitled](iARWDocumentation/Untitled.png)
 
 - Allow user to send request directly to webpage owner email.
 - The information of email, name, message will be sent.
 
 ### Login Form
 
-![Untitled](iARW%20Documentation%2090927abe1a5942358a1d730f751778da/Untitled%201.png)
+![Untitled](iARWDocumentation/Untitled%201.png)
 
 - Allow user to use google account to login and use all “user” function.
 
 ### Dashboard interface
 
-![Untitled](iARW%20Documentation%2090927abe1a5942358a1d730f751778da/Untitled%202.png)
+![Untitled](iARWDocumentation/Untitled%202.png)
 
 - The main interface of application.
 - The user can sort by popularity, latest.
@@ -55,7 +55,7 @@
 
 ### Product management
 
-![Untitled](iARW%20Documentation%2090927abe1a5942358a1d730f751778da/Untitled%203.png)
+![Untitled](iARWDocumentation/Untitled%203.png)
 
 - Where you store all of your products.
 - It contains search by field, go to page, pagination, show visible number by rows.
@@ -63,45 +63,45 @@
 
 ### Create Product
 
-![Untitled](iARW%20Documentation%2090927abe1a5942358a1d730f751778da/Untitled%204.png)
+![Untitled](iARWDocumentation/Untitled%204.png)
 
 - You can provide name, description, type, quantity, unit, origin and cover image.
 - All informations are compulsory.
 
 ### Edit Product
 
-![Untitled](iARW%20Documentation%2090927abe1a5942358a1d730f751778da/Untitled%205.png)
+![Untitled](iARWDocumentation/Untitled%205.png)
 
 - Just as same as create product, in here you can load and edit your created product.
 
 ### 5 Steps Process
 
-![Untitled](iARW%20Documentation%2090927abe1a5942358a1d730f751778da/Untitled%206.png)
+![Untitled](iARWDocumentation/Untitled%206.png)
 
 - Every product will have 5 steps from planting to exporting product.
 - The interface is very similar to Product management.
 
 ### Creating Process
 
-![Untitled](iARW%20Documentation%2090927abe1a5942358a1d730f751778da/Untitled%207.png)
+![Untitled](iARWDocumentation/Untitled%207.png)
 
 - A procress will have its own step, name and note.
 
 ### Edit process
 
-![Untitled](iARW%20Documentation%2090927abe1a5942358a1d730f751778da/Untitled%208.png)
+![Untitled](iARWDocumentation/Untitled%208.png)
 
 - This will allow you to edit your created process.
 
 ### Delete process
 
-![Untitled](iARW%20Documentation%2090927abe1a5942358a1d730f751778da/Untitled%209.png)
+![Untitled](iARWDocumentation/Untitled%209.png)
 
 - A popup will show up to ask you if you want to delete this process.
 
 ### Approval process
 
-![Untitled](iARW%20Documentation%2090927abe1a5942358a1d730f751778da/Untitled%2010.png)
+![Untitled](iARWDocumentation/Untitled%2010.png)
 
 - This is the interface only available for “admin”.
 - It will allow them to approve products, the default status after the “user” creates a new product is “Pending”.
@@ -110,20 +110,20 @@
 
 ### Review product
 
-![Untitled](iARW%20Documentation%2090927abe1a5942358a1d730f751778da/Untitled%2011.png)
+![Untitled](iARWDocumentation/Untitled%2011.png)
 
 - The “admin” can preview of what being sent by user by clicking review button.
 
 ### Product detail
 
-![Untitled](iARW%20Documentation%2090927abe1a5942358a1d730f751778da/Untitled%2012.png)
+![Untitled](iARWDocumentation/Untitled%2012.png)
 
 - Allow you to watch all informations of the product.
 - It also provides 5 steps process so you can track on your product.
 
 ### Chat function
 
-![Untitled](iARW%20Documentation%2090927abe1a5942358a1d730f751778da/Untitled%2013.png)
+![Untitled](iARWDocumentation/Untitled%2013.png)
 
 - Allow users to chat with each other & with admin to report errors happen during managing process.
 
